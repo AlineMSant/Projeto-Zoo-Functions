@@ -11,12 +11,20 @@ const isManager = (id) => {
 
 const getRelatedEmployees = (managerId) => {
   if (isManager(managerId) === true) {
-    return data.employees.find((obj) => obj.id === managerId).responsibleFor;
+    const arrayEmployees = data.employees;
+    const array = [];
+    arrayEmployees.forEach((obj) => {
+      const arrayManagers = obj.managers;
+      arrayManagers.forEach((element) => {
+        if (element === managerId) {
+          array.push(`${obj.firstName} ${obj.lastName}`);
+        }
+      });
+    });
+    return array;
   }
   throw new Error('O id inserido não é de uma pessoa colaboradora gerente!');
 };
-
-console.log(getRelatedEmployees('0e7b460e-acf4-4e17-bcb3-ee472265db83'));
 
 // console.log(getRelatedEmployees('c5b83cb3-a451-49e2-ac45-ff3f54fbe7e1'));
 
