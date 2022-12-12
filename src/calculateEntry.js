@@ -6,17 +6,17 @@ const data = require('../data/zoo_data');
 // ];
 
 const countEntrants = (entrants) => {
-  const child = entrants.reduce((acc, curr) => (curr.age < 18 ? acc += 1 : acc = acc), 0);
+  // const child = entrants.reduce((acc, curr) => (curr.age < 18 ? acc += 1 : acc = acc), 0);
 
-  const adult = entrants.reduce((acc, curr) => (curr.age >= 18 ? acc += 1 && curr.age < 50 : acc = acc), 0);
+  // const adult = entrants.reduce((acc, curr) => (curr.age >= 18 ? acc += 1 && curr.age < 50 : acc = acc), 0);
 
-  const senior = entrants.reduce((acc, curr) => (curr.age >= 50 ? acc += 1 : acc = acc), 0);
+  // const senior = entrants.reduce((acc, curr) => (curr.age >= 50 ? acc += 1 : acc = acc), 0);
 
-  return {
-    adult,
-    child,
-    senior,
-  };
+  // return {
+  //   adult,
+  //   child,
+  //   senior,
+  // };
 };
 
 const calculateEntry = (entrants) => {
