@@ -12,8 +12,23 @@ describe('Testes da função HandlerElephants', () => {
   it('Verifica se a função retorna corretamente quando recebe paramtro averageAge', () => {
     expect(handlerElephants('averageAge', 'elephants')).toStrictEqual(10.5); // não precisou da lógica aproximada pois o resultado é exatamente 10.5
   });
-});
 
+  it('', () => {
+
+  });
+
+  it('', () => {
+
+  });
+
+  it('', () => {
+
+  });
+
+  it('', () => {
+
+  });
+});
 
 // it('', () => {
 
