@@ -1,13 +1,17 @@
+const { employees } = require('../data/zoo_data');
 const data = require('../data/zoo_data');
 
-const getEmployeeByName = () => { // deve retornar por firstName ou lastName
+const getEmployeeByName = (obj) => { // deve retornar por firstName ou lastName
+  const employee = data.employees.find((element) =>
+    element.firstName === obj.name || element.lastName === obj.name);
 
-  // return {
-  //   id: "4b40a139-d4dc-4f09-822d-ec25e819a5ad", // id da pessoa
-  //   fullName: "Sharonda Spry", // nome completo: firstName + lastName
-  //   species: [ "otters", "frogs" ], // espécies as quais a pessoa é responsável
-  //   locations: [ "SE", "SW" ], // Um array contendo todas as localizações das espécies
-  // }
+  return {
+    id: employee.id,
+    fullName: `${employee.firstName} ${employee.lastName}`,
+    species: employee.responsibleFor,
+    locations: employee.responsibleFor.map((idSpecies) =>
+      data.species.find((objSpecies) => objSpecies.id === idSpecies).location),
+  };
 };
 
 const getEmployeeById = () => {};
@@ -19,7 +23,7 @@ const getEmployeesCoverage = (obj) => {
   if (Object.keys(obj).length === 0) {
     retorno = getAllEmployees();
   } else if (!obj.id) {
-    retorno = getEmployeeByName();
+    retorno = getEmployeeByName(obj);
   } else if (!obj.name) {
     retorno = getEmployeeById();
   } else {
@@ -28,4 +32,5 @@ const getEmployeesCoverage = (obj) => {
   return retorno;
 };
 
+console.log(getEmployeesCoverage({ name: 'Spry' }));
 module.exports = getEmployeesCoverage;
