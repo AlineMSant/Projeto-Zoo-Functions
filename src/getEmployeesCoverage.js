@@ -14,7 +14,18 @@ const getEmployeeByName = (obj) => {
   };
 };
 
-const getEmployeeById = () => {};
+const getEmployeeById = (obj) => {
+  const employee = employees.find((element) =>
+    element.id === obj.id);
+
+  return {
+    id: employee.id,
+    fullName: `${employee.firstName} ${employee.lastName}`,
+    species: employee.responsibleFor,
+    locations: employee.responsibleFor.map((idSpecies) =>
+      data.species.find((objSpecies) => objSpecies.id === idSpecies).location),
+  };
+};
 
 const getAllEmployees = () => {}; // retornar uma array de objetos.
 
@@ -25,12 +36,12 @@ const getEmployeesCoverage = (obj) => {
   } else if (!obj.id) {
     retorno = getEmployeeByName(obj);
   } else if (!obj.name) {
-    retorno = getEmployeeById();
+    retorno = getEmployeeById(obj);
   } else {
     // retorno = throw new Error('Informação inválida') //caso não encontre employee correspondente ao id, lastName ou fristName.
   }
   return retorno;
 };
 
-console.log(getEmployeesCoverage({ name: 'Spry' }));
+console.log(getEmployeesCoverage({ id: 'c1f50212-35a6-4ecd-8223-f835538526c2' }));
 module.exports = getEmployeesCoverage;
