@@ -27,11 +27,20 @@ const getEmployeeById = (obj) => {
   };
 };
 
-const getAllEmployees = () => {}; // retornar uma array de objetos.
+const getAllEmployees = () => {
+  const objeto = data.employees.map((obj) => ({
+    id: obj.id,
+    fullName: `${obj.firstName} ${obj.lastName}`,
+    species: obj.responsibleFor,
+    locations: obj.responsibleFor.map((idSpecies) =>
+      data.species.find((objSpecies) => objSpecies.id === idSpecies).location),
+  }));
+  return objeto;
+};
 
 const getEmployeesCoverage = (obj) => {
   let retorno;
-  if (Object.keys(obj).length === 0) {
+  if (!obj) {
     retorno = getAllEmployees();
   } else if (!obj.id) {
     retorno = getEmployeeByName(obj);
@@ -43,5 +52,5 @@ const getEmployeesCoverage = (obj) => {
   return retorno;
 };
 
-console.log(getEmployeesCoverage({ id: 'c1f50212-35a6-4ecd-8223-f835538526c2' }));
+console.log(getEmployeesCoverage());
 module.exports = getEmployeesCoverage;
