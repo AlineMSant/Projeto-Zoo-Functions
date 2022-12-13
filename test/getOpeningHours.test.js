@@ -17,8 +17,12 @@ describe('Testes da função getOpeningHours', () => {
     expect(getOpeningHours('Monday', '09:00-AM')).toStrictEqual('The zoo is closed');
   });
 
-  it('', () => {
+  it('Verifica se a função retorna open se passar Tuesday como argumento', () => {
+    expect(getOpeningHours('Tuesday', '09:00-AM')).toStrictEqual('The zoo is open');
+  });
 
+  it('Verifica se a função retorna closed se passar 9PM como argumento', () => {
+    expect(getOpeningHours('Wednesday', '09:00-PM')).toStrictEqual('The zoo is closed');
   });
 });
 
