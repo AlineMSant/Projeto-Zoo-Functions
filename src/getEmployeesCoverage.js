@@ -8,7 +8,9 @@ const getEmployeeByName = (obj) => {
   return {
     id: employee.id,
     fullName: `${employee.firstName} ${employee.lastName}`,
-    species: employee.responsibleFor,
+    species: employee.responsibleFor.map((idSpecies) =>
+      data.species.find((objSpecies) => objSpecies.id === idSpecies).name),
+
     locations: employee.responsibleFor.map((idSpecies) =>
       data.species.find((objSpecies) => objSpecies.id === idSpecies).location),
   };
@@ -21,7 +23,8 @@ const getEmployeeById = (obj) => {
   return {
     id: employee.id,
     fullName: `${employee.firstName} ${employee.lastName}`,
-    species: employee.responsibleFor,
+    species: employee.responsibleFor.map((idSpecies) =>
+      data.species.find((objSpecies) => objSpecies.id === idSpecies).name),
     locations: employee.responsibleFor.map((idSpecies) =>
       data.species.find((objSpecies) => objSpecies.id === idSpecies).location),
   };
@@ -31,7 +34,8 @@ const getAllEmployees = () => {
   const objeto = data.employees.map((obj) => ({
     id: obj.id,
     fullName: `${obj.firstName} ${obj.lastName}`,
-    species: obj.responsibleFor,
+    species: obj.responsibleFor.map((idSpecies) =>
+      data.species.find((objSpecies) => objSpecies.id === idSpecies).name),
     locations: obj.responsibleFor.map((idSpecies) =>
       data.species.find((objSpecies) => objSpecies.id === idSpecies).location),
   }));
@@ -47,7 +51,7 @@ const getEmployeesCoverage = (obj) => {
   } else if (!obj.name) {
     retorno = getEmployeeById(obj);
   } else {
-    // retorno = throw new Error('Informação inválida') //caso não encontre employee correspondente ao id, lastName ou fristName.
+    throw new Error('Informação inválida');
   }
   return retorno;
 };
