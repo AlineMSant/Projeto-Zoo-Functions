@@ -1,8 +1,8 @@
 const { employees } = require('../data/zoo_data');
 const data = require('../data/zoo_data');
 
-const getEmployeeByName = (obj) => { // deve retornar por firstName ou lastName
-  const employee = data.employees.find((element) =>
+const getEmployeeByName = (obj) => {
+  const employee = employees.find((element) =>
     element.firstName === obj.name || element.lastName === obj.name);
 
   return {
